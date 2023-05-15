@@ -1,32 +1,43 @@
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 const App= () =>  {//this is JS
   const [showAddTask,setShowAddTask] = useState(false)
+  const [tasks,setTasks] = useState([])
+  useEffect(()=>{
+    const fetchTasks = async ()=>{
+      const res = await fetch('http://localhost:5000/tasks')
+      const data = await res.json()
+      setTasks(data)
+      console.log(data)
+    
+    }
+    fetchTasks();
+  },[])//empty array for dependencies?
   // const [addCloseColor,setAddCloseColor] = useState('green')
   // const [addCloseBTN,setAddCloseBTN] = useState('Add Task')
-  const [tasks,setTasks] = useState([
-    {
-      "id": 1,
-      "text": "test",
-      "other": "no-show",
-      "day": "monday",
-      "reminder": true
-    },
-    {
-      "text": "Test4",
-      "day": "Wednesday",
-      "reminder": false,
-      "id": 2
-    },
-    {
-      "text": "Task6",
-      "day": "Thursday",
-      "reminder": true,
-      "id": 3
-    }
-  ])   
+  // const [tasks,setTasks] = useState([
+  //   {
+  //     "id": 1,
+  //     "text": "test",
+  //     "other": "no-show",
+  //     "day": "monday",
+  //     "reminder": true
+  //   },
+  //   {
+  //     "text": "Test4",
+  //     "day": "Wednesday",
+  //     "reminder": false,
+  //     "id": 2
+  //   },
+  //   {
+  //     "text": "Task6",
+  //     "day": "Thursday",
+  //     "reminder": true,
+  //     "id": 3
+  //   }
+  // ])   
 
   //delete task
   const deleteTask = (id) => {
@@ -57,7 +68,7 @@ const App= () =>  {//this is JS
     <div className="container">
       {/* <Header showAddTask = {showAddTask} color = {addCloseColor} title = {addCloseBTN} onShowAddTask = {()=>toggleShowAddTask()} /> MY WAY*/}
       <Header showAddTask = {showAddTask} onShowAddTask = {()=>toggleShowAddTask()}/>
-      {showAddTask && <AddTask onAddTask = {addTask} tasks = {tasks} setTasks = {setTasks}/>} {/**like terniary without**/}
+      {showAddTask && <AddTask onAddTask = {addTask} tasks = {tasks} setTasks = {setTasks}/>}
       {tasks.length>0 ? <Tasks tasks = {tasks} onDelete = {deleteTask} onToggle = {toggleReminder}/>: 'No Tasks To Show'}
     </div>
   );
