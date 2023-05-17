@@ -1,25 +1,32 @@
 import {useState} from 'react'
-const AddTask = ({onAddTask,tasks}) => {
+const AddTask = ({onAddTask}) => {
     const [text,setText] = useState('');
     const [day,setDay] = useState('');
     const [reminder,setReminder] = useState(false);
     const onClick = (e)=>{
         e.preventDefault();
-        tasks.push({//travesty did not pass task in as a prop instead did all sate related changes in App.addTask(). Does it matter?
-            "id": tasks.length+1,//make this random
-            "text": text,
-            "day": day,
-            "reminder": reminder,
-            })
-        if(!text){
+        // tasks.push({//travesty did not pass task in as a prop instead did all sate related changes in App.addTask(). Does it matter?
+        //     "id": Math.random * 10000,//make this random
+        //     "text": text,
+        //     "day": day,
+        //     "reminder": reminder,
+        //     })
+
+        if(!text){//'' is falsy
             alert('Please add a task');
             return;
         }
-        onAddTask(tasks)
+        const newTask = {
+            "text": text,
+            "day": day,
+            "reminder": reminder,
+            }
+        console.log('CLEEK',newTask)
+        onAddTask(newTask)
         setText('')
         setDay('')
         setReminder(false)
-            //console.log('CLEEK',tasks)
+        
     }
     return (
     <form className = 'add-form' onSubmit = {(e)=>e.preventDefault}> 

@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types'
 const Button = ({color,text,onClick}) => {//can use props but we destructed props object for what we want passed in
-    console.log(color,text)
+    //console.log(color,text)
     return (
     <button 
         onClick = {onClick}

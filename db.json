@@ -9,7 +9,7 @@
     {
       "text": "Test4",
       "day": "Wednesday",
-      "reminder": false,
+      "reminder": true,
       "id": 2
     },
     {
@@ -21,8 +21,14 @@
     {
       "text": "Task123",
       "day": "Thursday",
-      "reminder": false,
+      "reminder": true,
       "id": 4
+    },
+    {
+      "text": "A new one",
+      "day": "Wednesday",
+      "reminder": true,
+      "id": 5
     }
   ]
 }
