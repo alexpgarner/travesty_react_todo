@@ -4,6 +4,7 @@ import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
 import Footer from './components/Footer'
 import About from './components/About'
+import TaskDetails from './components/TaskDetails'
 
 import {useState,useEffect} from 'react'
 
@@ -106,6 +107,7 @@ const App= () =>  {//this is JS
             }
           />
           <Route path = '/about' element = {<About/>} />
+          <Route path = {`/task/:id`} element = {<TaskDetails/>}/>
         </Routes>
         <Footer/> 
       </div>

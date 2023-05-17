@@ -13,7 +13,7 @@ const Button = ({color,text,onClick}) => {//can use props but we destructed prop
 }
 
 Button.defaultProps = {
-    backgroundColor : 'steelblue',
+    color : 'steelblue',
 }
 
 Button.propTypes = {
